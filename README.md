@@ -65,7 +65,7 @@ What this setup does
 
 The path needs to correspond with the settings of the path within your
 screenshot tool. For Snipping Tool you can configure/find the path in the
-settings menu in ~Snipping section -> Screenshots are saved to~.
+settings menu in `Snipping section -> Screenshots are saved to`.
 
 The win-screenshot-source-dir can be also adjusted with the Emacs
 Customization (see below).
