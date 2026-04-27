@@ -5,7 +5,7 @@
 ;; Version: 0.1.0
 ;; Package-Requires: ((emacs "27.1") (org "9.4"))
 ;; Keywords: convenience, tools, org
-;; Homepage: https://github.com/yourname/win-screenshot
+;; Homepage: https://github.com/prake71/win-screenshot
 
 ;;; Commentary:
 
@@ -24,9 +24,14 @@
 
 ;;; Code:
 
-;(require 'subr-x)
-
 ;;;; Customization
+
+(defvar win-screenshot-mode-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map (kbd "C-c C-s") #'win-screenshot-here)
+    map)
+  "Keymap for `win-screenshot-mode'.")
+
 
 (defgroup win-screenshot nil
   "Insert Windows screenshots into Org buffers."
@@ -42,6 +47,7 @@
   "Directory where Windows screenshots are stored."
   :type 'directory
   :group 'win-screenshot)
+
 
 (defun win-screenshot--timestamp ()
   "Return an ISO-like timestamp safe for filenames."
@@ -84,6 +90,15 @@ Return the relative path."
     (let ((relative-path (win-screenshot-capture-file latest)))
       (insert (format "[[file:%s]]\n" relative-path))
       (org-redisplay-inline-images))))
+
+
+(define-minor-mode win-screenshot-mode
+	       "Minor mode to insert screenshots into Org buffers under Windows.
+When enabled provides commands and key bindings for inserting
+Windows screenshots into current Org buffer."
+	       :init-value nil
+	       :lighter "win-screeshot"
+	       :keymap win-screenshot-mode-map)
 
 (provide 'win-screenshot)
 
