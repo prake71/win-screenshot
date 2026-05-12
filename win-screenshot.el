@@ -97,7 +97,7 @@ Return the relative path."
 When enabled provides commands and key bindings for inserting
 Windows screenshots into current Org buffer."
 	       :init-value nil
-	       :lighter "win-screeshot"
+	       :lighter "win-screenshot"
 	       :keymap win-screenshot-mode-map)
 
 (provide 'win-screenshot)
